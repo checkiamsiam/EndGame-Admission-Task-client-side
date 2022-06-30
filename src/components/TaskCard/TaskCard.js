@@ -52,7 +52,7 @@ const TaskCard = ({ note, handleDelete, recallApi, setRecallApi }) => {
 
   return (
     <div className="col my-20 " style={{ position: "relative" }}>
-      <div class="card w-96 h-52 bg-neutral text-neutral-content">
+      <div class="card  h-52 bg-neutral text-neutral-content">
         <div class="card-body items-center text-center">
           <h2 class="card-title">{note.user_name}</h2>
           <p>{note.text.slice(0, 50)}</p>
