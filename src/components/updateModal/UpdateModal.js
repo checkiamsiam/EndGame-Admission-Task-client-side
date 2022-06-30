@@ -41,7 +41,7 @@ export default function UpdateModal({ handleUpdate }) {
     <div>
       <button onClick={openModal} className="color-801336 btn-sm btn">
         {" "}
-        Update
+        Edit
       </button>
       <Modal
         isOpen={modalIsOpen}

@@ -6,7 +6,7 @@ const inputForm = ({ recallApi, setRecallApi }) => {
     e.preventDefault()
     const user_name = e.target.user_name.value;
     const text = e.target.text.value;
-    const postData = { user_name, text };
+    const postData = { user_name, text , completed: false};
 
     fetch('http://localhost:5000/tasks', {
       method: 'POST',
@@ -24,28 +24,29 @@ const inputForm = ({ recallApi, setRecallApi }) => {
 
 
   return (
-    <div className=" p-3 bg-secondary">
-      <form className="container" onSubmit={handlePost}>
-        <div className="input-group mb-3 mt-5">
+    <div className=" p-3 bg-secondary h-screen flex justify-center items-center">
+      <form className="md:w-1/2 w-full" onSubmit={handlePost}>
+        <div className="mb-3 mt-5">
           <input
             type="text"
-            className="form-control"
+            className="form-control  input input-bordered input-accent"
             placeholder="Task name"
             aria-label="Username"
             name="user_name"
           />
         </div>
 
-        <div className="input-group">
-          <span className="input-group-text">Description</span>
+        <div className="">
           <textarea
-            className="form-control"
+            className="form-control textarea textarea-accent"
             aria-label="With textarea"
+            placeholder="Details"
             name="text"
+            rows={4}
           ></textarea>
         </div>
         <div className="mt-4">
-          <input type="submit" value="Add Task" className="btn btn-info" />
+          <input type="submit" value="Add To List" className="btn btn-info" />
         </div>
       </form>
     </div>

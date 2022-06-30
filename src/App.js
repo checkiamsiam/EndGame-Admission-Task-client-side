@@ -1,11 +1,9 @@
-
 import "./App.css";
 import Header from "./components/header/Header";
 import InputForm from "./components/inputForm/InputForm";
-import NoteCard from "./components/noteCard/NoteCard";
 import { useEffect, useState } from "react";
-
-
+import { Route, Routes } from "react-router-dom";
+import TaskCard from "./components/TaskCard/TaskCard";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -17,8 +15,6 @@ function App() {
     fetch("http://localhost:5000/tasks")
       .then(res => res.json())
       .then(data => setNotes(data))
-
-
   }, [recallApi]);
 
 
@@ -37,18 +33,35 @@ function App() {
   return (
     <div className="App">
       <Header state={setNotes} />
-      <InputForm setRecallApi={setRecallApi} recallApi={recallApi} />
-      <div className="row row-cols-1 row-cols-md-3 g-4 m-2">
-        {notes.map((note) => (
-          <NoteCard
-            setRecallApi={setRecallApi}
-            recallApi={recallApi}
-            handleDelete={handleDelete}
-            key={note._id}
-            note={note}
-          />
-        ))}
-      </div>
+      <Routes>
+        <Route path='/' element={[
+          <InputForm setRecallApi={setRecallApi} recallApi={recallApi} />,
+          <div className="row row-cols-1 row-cols-md-3 g-4 m-2">
+            {notes.map((note) => (
+              <TaskCard
+                setRecallApi={setRecallApi}
+                recallApi={recallApi}
+                handleDelete={handleDelete}
+                key={note._id}
+                note={note}
+              />
+            ))}
+          </div>
+        ]} ></Route>
+        <Route path="to-do" element={
+          <div className="row row-cols-1 row-cols-md-3 g-4 m-2">
+            {notes.map((note) => (
+              <TaskCard
+                setRecallApi={setRecallApi}
+                recallApi={recallApi}
+                handleDelete={handleDelete}
+                key={note._id}
+                note={note}
+              />
+            ))}
+          </div>
+        }></Route>
+      </Routes>
     </div>
   );
 }

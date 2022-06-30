@@ -10,7 +10,7 @@ const customStyles = {
   width: "80px",
 };
 
-const NoteCard = ({ note, handleDelete, recallApi, setRecallApi }) => {
+const TaskCard = ({ note, handleDelete, recallApi, setRecallApi }) => {
 
 
   const handleUpdate = (e) => {
@@ -50,7 +50,6 @@ const NoteCard = ({ note, handleDelete, recallApi, setRecallApi }) => {
               Delete
             </button>
           </div>
-          {/* <button>update</button> */}
           <UpdateModal handleUpdate={handleUpdate} />
         </div>
       </div>
@@ -58,4 +57,4 @@ const NoteCard = ({ note, handleDelete, recallApi, setRecallApi }) => {
   );
 };
 
-export default NoteCard;
+export default TaskCard;
