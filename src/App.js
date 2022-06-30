@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import TaskCard from "./components/TaskCard/TaskCard";
 import Completed from "./components/Routes/Completed";
+import Calendar from "./components/Routes/Calendar";
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -62,6 +63,7 @@ function App() {
           </div>
         }></Route>
         <Route path='/completed' element={<Completed completedTask={notes.filter(n => n.completed === true)}></Completed>} ></Route>
+        <Route path='/calender' element={<Calendar></Calendar>} ></Route>
         <Route path='*' element={
           <div className="min-h-screen flex justify-center items-center">
             <div>
