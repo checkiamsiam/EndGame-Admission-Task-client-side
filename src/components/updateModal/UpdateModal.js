@@ -10,6 +10,7 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    backgroundColor: 'goldenrod'
   },
 };
 
@@ -17,9 +18,9 @@ Modal.setAppElement("#root");
 
 
 
-export default function UpdateModal({ handleUpdate }) {
+export default function UpdateModal({ handleUpdate , modalIsOpen, setIsOpen}) {
 
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+ 
 
   function openModal() {
     setIsOpen(true);
@@ -39,7 +40,7 @@ export default function UpdateModal({ handleUpdate }) {
 
   return (
     <div>
-      <button onClick={openModal} className="color-801336 btn-sm btn">
+      <button onClick={openModal} className="btn btn-ghost text-danger absolute top-2 right-16 link">
         {" "}
         Edit
       </button>
@@ -50,31 +51,33 @@ export default function UpdateModal({ handleUpdate }) {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <button onClick={closeModal} className="btn btn-sm btn-warning">
-          close
-        </button>
-        <div>Please insert your text</div>
-        <div className=" p-3 color-4D4C7D">
+        <div className="flex justify-end">
+          <button onClick={closeModal} className="btn text-xl btn-ghost mb-1">
+            X
+          </button>
+        </div>
+        <div>
           <form className="container " onSubmit={handleUpdate}>
-            <div className="input-group mb-3 mt-5">
+            <div className="mb-3 ">
               <input
                 type="text"
                 name="user_name"
-                className="form-control"
+                className="form-control input input-bordered input-accent"
                 placeholder="Task Name"
                 aria-label="Username"
               />
             </div>
 
-            <div className="input-group">
+            <div>
               <textarea
                 name="text"
-                className="form-control"
+                className="form-control textarea textarea-accent"
                 aria-label="With textarea"
+                placeholder="Details"
               ></textarea>
             </div>
             <div className="mt-4">
-              <input type="submit" value="submit" className="btn btn-info" />
+              <input type="submit" value="Update" className="btn btn-info" />
             </div>
           </form>
         </div>

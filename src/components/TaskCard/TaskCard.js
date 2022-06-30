@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UpdateModal from '../updateModal/UpdateModal';
 
 
@@ -11,6 +11,9 @@ const customStyles = {
 };
 
 const TaskCard = ({ note, handleDelete, recallApi, setRecallApi }) => {
+
+  const [check, setCheck] = useState(false)
+  const [modalIsOpen, setIsOpen] = React.useState(false);
 
 
   const handleUpdate = (e) => {
@@ -30,29 +33,39 @@ const TaskCard = ({ note, handleDelete, recallApi, setRecallApi }) => {
       .then(data => setRecallApi(!recallApi))
     e.target.user_name.value = ''
     e.target.text.value = ''
+    setIsOpen(false);
   }
 
+  const addToComplete = () => {
+    setCheck(true)
+    const url = `http://localhost:5000/addToComplete/${note._id}`
+    fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    })
+      .then(res => res.json())
+      .then(data => setRecallApi(!recallApi))
+  }
 
   return (
-    <div className="col mt-5 " style={{ position: "relative" }}>
-      <div className="rounded h-100 bg-secondary text-white note-card">
+    <div className="col my-20 " style={{ position: "relative" }}>
+      <div class="card w-96 h-52 bg-neutral text-neutral-content">
+        <div class="card-body items-center text-center">
+          <h2 class="card-title">{note.user_name}</h2>
+          <p>{note.text.slice(0, 50)}</p>
+          <div class="card-actions justify-end">
+            <button onClick={() => handleDelete(note._id)} class="btn btn-primary">Cancel</button>
+            <button onClick={addToComplete} class="btn btn-primary"><input checked={check} type="checkbox" class="checkbox checkbox-accent mr-2" /> Completed</button>
 
-        <div className="card-body mt-5">
-          <h5 className="card-title">Task Name : {note.user_name}</h5>
-          <p className="card-text">Description : {note.text}</p>
-        </div>
-        <div className="card-footer d-flex justify-content-center  ">
-          <div>
-            <button
-              className="color-801336 btn btn-sm mx-2  "
-              onClick={() => handleDelete(note._id)}
-            >
-              Delete
-            </button>
+
+
           </div>
-          <UpdateModal handleUpdate={handleUpdate} />
         </div>
       </div>
+      <UpdateModal handleUpdate={handleUpdate}  modalIsOpen={modalIsOpen}  setIsOpen={setIsOpen} />
     </div>
   );
 };
