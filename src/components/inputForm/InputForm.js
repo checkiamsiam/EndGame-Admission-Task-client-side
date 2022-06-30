@@ -37,13 +37,12 @@ const inputForm = ({ recallApi, setRecallApi }) => {
         </div>
 
         <div className="">
-          <textarea
-            className="form-control textarea textarea-accent"
+          <input
+            className="form-control input input-bordered input-accent h-28"
             aria-label="With textarea"
             placeholder="Details"
             name="text"
-            rows={4}
-          ></textarea>
+          />
         </div>
         <div className="mt-4">
           <input type="submit" value="Add To List" className="btn btn-info" />

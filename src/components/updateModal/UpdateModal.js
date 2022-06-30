@@ -18,9 +18,9 @@ Modal.setAppElement("#root");
 
 
 
-export default function UpdateModal({ handleUpdate , modalIsOpen, setIsOpen}) {
+export default function UpdateModal({ handleUpdate, modalIsOpen, setIsOpen }) {
 
- 
+
 
   function openModal() {
     setIsOpen(true);
@@ -69,12 +69,12 @@ export default function UpdateModal({ handleUpdate , modalIsOpen, setIsOpen}) {
             </div>
 
             <div>
-              <textarea
-                name="text"
-                className="form-control textarea textarea-accent"
+              <input
+                className="form-control input input-bordered input-accent h-28"
                 aria-label="With textarea"
                 placeholder="Details"
-              ></textarea>
+                name="text"
+              />
             </div>
             <div className="mt-4">
               <input type="submit" value="Update" className="btn btn-info" />
